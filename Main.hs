@@ -15,10 +15,10 @@ module Main (main) where
     opsSolve :: [Int] -> String -> [Int]
     opsSolve s [] = s
     opsSolve (firstOnStack : secondOnStack : restOfStack) reversePolishNotation
-        | polishOp == "+" = opsSolve (firstOnStack   +   secondOnStack : restOfStack) stringRestOfNotation
-        | polishOp == "-" = opsSolve (firstOnStack   -   secondOnStack : restOfStack) stringRestOfNotation
-        | polishOp == "*" = opsSolve (firstOnStack   *   secondOnStack : restOfStack) stringRestOfNotation
-        | polishOp == "/" = opsSolve (firstOnStack `div` secondOnStack : restOfStack) stringRestOfNotation
+        | polishOp == "+" = opsSolve (secondOnStack   +   firstOnStack : restOfStack) stringRestOfNotation
+        | polishOp == "-" = opsSolve (secondOnStack   -   firstOnStack : restOfStack) stringRestOfNotation
+        | polishOp == "*" = opsSolve (secondOnStack   *   firstOnStack : restOfStack) stringRestOfNotation
+        | polishOp == "/" = opsSolve (secondOnStack `div` firstOnStack : restOfStack) stringRestOfNotation
         where (polishOp : restOfNotation) = words reversePolishNotation
               stringRestOfNotation = unwords restOfNotation
 
